@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import logo from './logo.svg';
 import './App.css';
 import { simpleAction } from "./actions/simpleAction";
+import HitServer from "./components/hitServer";
 
 class App extends Component {
   simpleAction = (event) => {
@@ -24,6 +25,7 @@ class App extends Component {
           </p>
           <pre>{JSON.stringify(this.props)}</pre>
           <button onClick={this.simpleAction}>Test redux action</button>
+            <HitServer />
 
         </div>
     );
