@@ -10,6 +10,8 @@ const bodyParser = require('body-parser');
 const cors  = require('cors');
 const Data = require("./models/data");
 
+const LandOwners = require("./models/data")
+
 const app = express();
 const router = express.Router();
 
@@ -32,9 +34,34 @@ router.get("/", (req, res) => {
 });
 
 router.get("/getData", (req, res) => {
-    Data.find((err, data) => {
+    LandOwners.find((err, data) => {
         if (err) return res.json({ success: false, error: err });
-        return res.json({ success: true, data: data });
+        return res.json({ success: true, fields: data });
+    });
+});
+
+router.post("/putData", (req, res) => {
+    let data = new LandOwners();
+
+    const { id, name, alias, email } = req.body;
+    console.log(name)
+    //check the form is valie
+    if (!name) {
+        return res.json({
+            success: false,
+            error: "INVALID INPUTS"
+        });
+    }
+
+
+    data.name = name;
+    data.alias = alias;
+    data.email = email;
+    data.id = id;
+    //save into collection the response body
+    data.save(err => {
+        if (err) return res.json({ success: false, error: err });
+        return res.json({ success: true });
     });
 });
 

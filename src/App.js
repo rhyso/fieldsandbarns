@@ -26,7 +26,6 @@ class App extends Component {
           <pre>{JSON.stringify(this.props)}</pre>
           <button onClick={this.simpleAction}>Test redux action</button>
             <HitServer />
-
         </div>
     );
   }
