@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const DataSchema = new Schema(
-    {
-        id: Number,
-        message: String
-    },
-    { timestamps: true }
-);
+// const DataSchema = new Schema(
+//     {
+//         id: Number,
+//         message: String
+//     },
+//     { timestamps: true }
+// );
 
 
 const LandOwners = new Schema(
@@ -49,6 +49,6 @@ const LandOwners = new Schema(
 
 
 
-module.exports = mongoose.model("Data", DataSchema);
+// module.exports = mongoose.model("Data", DataSchema);
 module.exports = mongoose.model("LandOwners", LandOwners);
 

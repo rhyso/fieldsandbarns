@@ -1,9 +1,9 @@
 import React, {Component} from "react";
-import AddNewField  from "./addNewField"
+import AddNewField  from "../addNewField"
 const axios = require('axios');
 
 
-class HitServer extends Component {
+export class LandOwners extends Component {
 
     constructor(props) {
         super(props);
@@ -15,11 +15,10 @@ class HitServer extends Component {
     }
 
     componentDidMount() {
+        this.props.simpleAction();
         this.getDataFromDb();
-        let counter = 0
-        if (!this.state.intervalIsSet && counter < 5) {
+        if (!this.state.intervalIsSet && !this.state.fields) {
             let interval = setInterval(this.getDataFromDb, 5000);
-            counter++
             this.setState({ intervalIsSet: interval });
         }
     }
@@ -50,7 +49,7 @@ class HitServer extends Component {
             <div>
                 <ul>
                     {fields && fields.length <= 0 ? "NO DB ENTRIES YET" : fields.map(dat => (
-                        <li style={{ padding: "10px" }} key={dat}>
+                        <li style={{ padding: "10px" }} key={Math.random()}>
                             <span>Field Name: {dat.name} </span>
                             <span>Field Alis: {dat.alias} </span>
                             <span>Field email: {dat.email} </span>
@@ -66,4 +65,5 @@ class HitServer extends Component {
         );
     }
 }
-export default HitServer
+
+export default LandOwners

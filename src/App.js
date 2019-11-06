@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import logo from './logo.svg';
 import './App.css';
 import { simpleAction } from "./actions/simpleAction";
-import HitServer from "./components/hitServer";
+import LandOwners from "./components/land-owners/container";
 
 class App extends Component {
   simpleAction = (event) => {
@@ -25,7 +25,7 @@ class App extends Component {
           </p>
           <pre>{JSON.stringify(this.props)}</pre>
           <button onClick={this.simpleAction}>Test redux action</button>
-            <HitServer />
+            <LandOwners />
         </div>
     );
   }
@@ -35,9 +35,5 @@ const mapStateToProps = state => ({
   ...state
 })
 
-const mapDispatchToProps = dispatch => ({
-  simpleAction: () => dispatch(simpleAction())
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);
 

@@ -1,6 +1,3 @@
-
-
-
 const uri = "mongodb+srv://sandbox:mald1ve5@sandbox-vyjju.mongodb.net/test?retryWrites=true&w=majority";
 
 const express = require('express');
@@ -8,9 +5,8 @@ const logger  = require('morgan');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors  = require('cors');
-const Data = require("./models/data");
 
-const LandOwners = require("./models/data")
+const LandOwners = require("./models/land-owners")
 
 const app = express();
 const router = express.Router();
@@ -34,9 +30,9 @@ router.get("/", (req, res) => {
 });
 
 router.get("/getData", (req, res) => {
-    LandOwners.find((err, data) => {
+    LandOwners.find((err, fields) => {
         if (err) return res.json({ success: false, error: err });
-        return res.json({ success: true, fields: data });
+        return res.json({ success: true, fields: fields });
     });
 });
 
