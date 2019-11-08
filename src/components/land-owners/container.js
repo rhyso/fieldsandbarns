@@ -1,13 +1,11 @@
 import { connect } from 'react-redux'
-import {simpleAction} from "../../actions/simpleAction";
+import { getLandOwners } from '../../reducers/landOwners'
 import { LandOwners } from './land-owners'
 
-const mapStateToProps = state => ({
-    ...state
-})
+const mapStateToProps = state => ({ ...state })
 
 const mapDispatchToProps = dispatch => ({
-    simpleAction: () => dispatch(simpleAction())
+    getLandOwners: () => dispatch(getLandOwners)
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(LandOwners);

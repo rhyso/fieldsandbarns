@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import AddNewField  from "../addNewField"
+import { landOwnersData } from '../../api'
 const axios = require('axios');
-
 
 export class LandOwners extends Component {
 
@@ -15,10 +15,10 @@ export class LandOwners extends Component {
     }
 
     componentDidMount() {
-        this.props.simpleAction();
-        this.getDataFromDb();
-        if (!this.state.intervalIsSet && !this.state.fields) {
-            let interval = setInterval(this.getDataFromDb, 5000);
+        this.props.getLandOwners();
+        //this.getDataFromDb();
+        if (!this.state.intervalIsSet) {
+            let interval = setInterval(this.getLandOwners, 5000);
             this.setState({ intervalIsSet: interval });
         }
     }
@@ -30,8 +30,13 @@ export class LandOwners extends Component {
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.setState({fields: nextProps})
+    }
+
 
     getDataFromDb = () => {
+
         axios.get("http://localhost:3001/api/getData")
             .then( (response) => response.data ) //needs to be data for some reason
             .then( res => { console.log(res); this.setState({ fields: res.fields })})//then can be object name
@@ -43,26 +48,39 @@ export class LandOwners extends Component {
 
     render() {
         const { fields } = this.state;
-        console.log(fields)
+        console.log(this.state)
 
-        return (
-            <div>
-                <ul>
-                    {fields && fields.length <= 0 ? "NO DB ENTRIES YET" : fields.map(dat => (
-                        <li style={{ padding: "10px" }} key={Math.random()}>
-                            <span>Field Name: {dat.name} </span>
-                            <span>Field Alis: {dat.alias} </span>
-                            <span>Field email: {dat.email} </span>
+        if( this.state.isLoading) {
+            return (
+                <div>
+                    <h1>no content yet</h1>
+                </div>
+            )
+        }
+        else return( <div> not loaded</div>)
+        // if (this.state.fields) {
+        //     return (
+        //         <div>
+        //             <ul>
+        //                 {fields === undefined ? "NO DB ENTRIES YET" : fields.map(dat => (
+        //                     <li style={{padding: "10px"}} key={Math.random()}>
+        //                         <span>Field Name: {dat.name} </span>
+        //                         <span>Field Alis: {dat.alias} </span>
+        //                         <span>Field email: {dat.email} </span>
+        //
+        //                     </li>
+        //                 ))}
+        //             </ul>
+        //             <div>}
+        //                 <h1>add new field{this.props.mystate}</h1>
+        //                 <AddNewField/>
+        //             </div>
+        //         </div>
+        //     )
+        // }else{
+        //     return ( <h1>no data yet</h1>)
+        //     }
 
-                        </li>
-                    ))}
-                </ul>
-            <div>
-                <h1>add new field</h1>
-            <AddNewField/>
-            </div>
-            </div>
-        );
     }
 }
 
