@@ -1,5 +1,8 @@
 import React, { Fragment } from "react";
 import { useFetch } from "./hooks";
+import Button from '@material-ui/core/Button';
+import Blocks from "./components/blocks/Blocks";
+
 
 export const Basic = ()  => {
     const [data, loading] = useFetch(
@@ -8,6 +11,10 @@ export const Basic = ()  => {
 
     return (
         <Fragment>
+            <Button variant="contained" color="primary">
+                Hello World
+            </Button>
+            <Blocks />
             <h1>Photos</h1>
             { loading ? ("Loading...") :
                 (
