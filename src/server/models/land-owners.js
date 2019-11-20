@@ -8,8 +8,6 @@ const Schema = mongoose.Schema;
 //     },
 //     { timestamps: true }
 // );
-
-
 const LandOwners = new Schema(
     {
         id: Number,
@@ -19,13 +17,25 @@ const LandOwners = new Schema(
     },
 );
 
-// const LandOwners_Fields = new Schema(
+//
+// const Owner = new Schema(
 //     {
-//         id: Number,
-//         owner: Link To LandOwner id,
-//         fieldNamw: String,
-//         fieldType: String,
-//         fieldComments: String
+//         _id: Schema.Types.ObjectId,
+//         name: String,
+//         alias: String,
+//         email: String,
+//         fields: [{ type: Schema.Types.ObjectId, ref: 'Fields' }]
+//     },
+// );
+//
+//
+// const Fields = new Schema(
+//     {
+//         _id: Schema.Types.ObjectId,
+//         fields: [{ type: Schema.Types.ObjectId, ref: 'Owner' }],
+//         name: String,
+//         type: String,
+//         comments: String
 //     },
 // );
 //
@@ -51,4 +61,5 @@ const LandOwners = new Schema(
 
 // module.exports = mongoose.model("Data", DataSchema);
 module.exports = mongoose.model("LandOwners", LandOwners);
+
 
