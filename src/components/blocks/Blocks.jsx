@@ -7,7 +7,7 @@ import Typography from './Typography';
 
 const styles = theme => ({
     root: {
-        marginTop: theme.spacing(8),
+        marginTop: '200px',
         marginBottom: theme.spacing(4),
     },
     images: {

@@ -1,59 +1,38 @@
-import React, {Component} from "react";
+import React, { useState } from "react";
+import HooksForm from './HooksForm'
 const axios = require('axios');
 
-class AddNewField extends Component {
+const AddNewField = () => {
+    const [name, setName] = useState(null);
+    const [alias, setAlias] = useState(null);
+    const [email, setEmail] = useState(null);
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            name: null,
-            alias: null,
-            email: null,
-        }
-    }
 
-        putDataToDB = () => {
-            // let currentIds = this.state.data.map(data => data.id);
-            // let idToBeAdded = 0;
-            // while (currentIds.includes(idToBeAdded)) {
-            //     ++idToBeAdded;
-            // }
-
-            const { name, alias, email } = this.state
-
+    const putDataToDB = () => {
             axios.post("http://localhost:3001/api/putData", {
-                name: name,
-                alias: alias,
-                email: email
+                name,
+                alias,
+                email
             });
         };
 
-    render() {
         return (
-            <div style={{ padding: "10px" }}>
-                <input
-                    type="text"
-                    onChange={e => this.setState({ name: e.target.value })}
-                    placeholder="Field Name"
-                    style={{ width: "200px" }}
-                />
-                <input
-                    type="text"
-                    onChange={e => this.setState({ alias: e.target.value })}
-                    placeholder="Field alias"
-                    style={{ width: "200px" }}
-                />
-                <input
-                    type="text"
-                    onChange={e => this.setState({ email: e.target.value })}
-                    placeholder="Field email"
-                    style={{ width: "200px" }}
-                />
-                <button onClick={() => this.putDataToDB()}>
+            <div>
+                <input type="text"  placeholder="Name" onChange={e => setName(e.target.value )}/>
+                <input type="text"  placeholder="Alias" onChange={e => setAlias(e.target.value )}/>
+                <input type="text"  placeholder="Email" onChange={e => setEmail(e.target.value )}/>
+                <h1>test</h1>
+                <button onClick={() => putDataToDB()}>
                     ADD
                 </button>
+
+                <br />
+
+                <HooksForm />
+
+
             </div>
         );
     }
-}
+
 export default AddNewField

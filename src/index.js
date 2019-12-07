@@ -4,18 +4,21 @@ import { Provider } from 'react-redux'
 import configureStore from './store';
 import './index.css';
 import App from './App';
-import * as firebase from "firebase/app";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import AddNewField from './components/addNewField'
+import AddNewOwner from './components/addNewOwner'
 
-// If you enabled Analytics in your project, add the Firebase SDK for Analytics
-import "firebase/analytics";
-
-// Add the Firebase products that you want to use
-import "firebase/auth";
-import "firebase/firestore";
 
 ReactDOM.render(
     <Provider store={configureStore()}>
-        <App />
+        <Router>
+            <Switch>
+            <Route path="/admin/add-new-field" component={AddNewField} exact/>
+            <Route path="/admin/add-new-owner" component={AddNewOwner} exact/>
+            <App  path="/" exact />
+            <Route component={Error}/>
+            </Switch>
+        </Router>
     </Provider>,
     document.getElementById('root')
 );

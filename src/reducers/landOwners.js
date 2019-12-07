@@ -32,8 +32,7 @@ export default owners
 export const getLandOwners = () => dispatch => {
     dispatch(createAction(LAND_OWNERS_GET)())
     return landOwnersData()
-        .then(
-            res => {
+        .then(res => {
                 dispatch({type: LAND_OWNERS_GET_SUCCESS, payload: {res}})
             },
             error => dispatch(createAction(LAND_OWNERS_GET_ERROR)({error}))

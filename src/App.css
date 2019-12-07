@@ -20,3 +20,49 @@
 .App-link {
   color: #09d3ac;
 }
+
+h1.header-title{
+  font-family: 'EB Garamond', serif;
+  font-size:40px;
+  color:black;
+}
+
+.topmenu{
+  position:fixed;
+  top:93px;
+  left:0;
+  right:0;
+  /*height:44px;*/
+  background:#FFFFFF;
+  z-index:7;
+  padding-top:18px;
+  display:block;
+  background: white;
+}
+
+ul#uhs-cat{
+  margin: 13px 0;
+  width: 980px;
+  padding: 0 56px;
+  margin-right: auto;
+  margin-left: auto;
+  list-style: none;
+}
+
+ul#uhs-cat li {
+  display: inline-block;
+  padding: 0;
+  line-height: 24px;
+  height: 24px;
+}
+
+ul#uhs-cat li a {
+  margin: 0 25px 0 0;
+  padding: 0;
+  font-family: BrandonGrotesqueMedium, sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.68px;
+  color: #2B2B2D;
+  text-decoration: none;
+}

@@ -1,65 +1,26 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+//https://code.tutsplus.com/articles/an-introduction-to-mongoose-for-mongodb-and-nodejs--cms-29527
 
-// const DataSchema = new Schema(
-//     {
-//         id: Number,
-//         message: String
-//     },
-//     { timestamps: true }
-// );
-const LandOwners = new Schema(
+const OwnersSchema = new Schema(
     {
-        id: Number,
-        name: String,
+        firstName: { type: String, required: true },
+        lastName: String,
         alias: String,
-        email: String
+        biography: String,
+        email: String,
+        created: {
+            type: Date,
+            default: Date.now
+        },
     },
 );
 
-//
-// const Owner = new Schema(
-//     {
-//         _id: Schema.Types.ObjectId,
-//         name: String,
-//         alias: String,
-//         email: String,
-//         fields: [{ type: Schema.Types.ObjectId, ref: 'Fields' }]
-//     },
-// );
-//
-//
-// const Fields = new Schema(
-//     {
-//         _id: Schema.Types.ObjectId,
-//         fields: [{ type: Schema.Types.ObjectId, ref: 'Owner' }],
-//         name: String,
-//         type: String,
-//         comments: String
-//     },
-// );
-//
-// const FieldTypes = new Schema(
-//     {
-//         id: Number,
-//         FieldId: Link to LandOwners_Fields
-//         FieldType: Link to fieldtype options,
-//         fieldCategory: String,
-//     },
-// );
-//
-// const FieldAvailability = new Schema(
-//     {
-//         id: Number,
-//         LandOwners_Fields: Link to LandOwners_Fields
-//         Availability: Date Range,
-//         fieldCategory: Link to FieldTypes,
-//     },
-// );
+OwnersSchema.methods.combineName = function() {
+    return this.firstName + this.lastName
+}
 
+module.exports = mongoose.model("Owners", OwnersSchema);
 
-
-// module.exports = mongoose.model("Data", DataSchema);
-module.exports = mongoose.model("LandOwners", LandOwners);
 
 
