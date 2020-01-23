@@ -6,7 +6,7 @@ import Blocks from "./components/blocks/Blocks";
 import AddNewOwner from './components/addNewOwner'
 import Input from './components/blocks/Input'
 import { GET_LAND_OWNERS_DATA_PATH } from './api/constants'
-
+import FieldLevelValidationForm from './components/blocks/reduxForm'
 export const Basic = ()  => {
     const [data, loading] = useFetch( GET_LAND_OWNERS_DATA_PATH );
 
@@ -54,7 +54,7 @@ export const Basic = ()  => {
                 </div>
             </div>
 
-
+            <FieldLevelValidationForm/>
             {/*<Button variant="contained" color="primary">*/}
             {/*    Hello World*/}
             {/*</Button>*/}

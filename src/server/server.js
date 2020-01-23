@@ -1,4 +1,10 @@
-const uri = "mongodb+srv://sandbox:mald1ve5@sandbox-vyjju.mongodb.net/test?retryWrites=true&w=majority";
+require('dotenv').config();
+
+let uri = 'mongodb+srv://';
+uri += process.env.DB_NAME + ':';
+uri += process.env.DB_PASSWORD;
+uri += '@sandbox-vyjju.mongodb.net/test?retryWrites=true&w=majority';
+
 
 const express = require('express');
 const logger  = require('morgan');

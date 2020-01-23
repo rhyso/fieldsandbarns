@@ -3,6 +3,7 @@ import './App.css';
 import FunctionalLandOwners from "./components/land-owners/functional/functional_land-owners";
 import { BarLoader } from "react-css-loaders";
 import Tabs from "./components/Tabs";
+
 const LazyBasic = React.lazy(() => import("./basic"));
 
 
