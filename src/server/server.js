@@ -15,6 +15,7 @@ const cors  = require('cors');
 const Owners = require("./models/land-owners")
 const Test2 = require("./models/land-owners")
 const Fields = require("./models/fields")
+const User = require("./models/users")
 
 const app = express();
 const router = express.Router();
@@ -35,6 +36,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 router.get("/", (req, res) => {
     res.json({ message: "HELLOW WORLDUUHHHH" });
+});
+
+
+/*
+Get All users
+*/
+router.get('/getOwners', (req,res) => {
+	Owners.find().then( (owners) =>{
+		res.send({owners});
+	},(err) =>{
+		res.status(400).send(err);
+   });
 });
 
 router.get("/getData", (req, res) => {
@@ -137,7 +150,66 @@ router.post("/addOwner", (req, res) => {
 
 
 
+/*
+BOOKING 
+*/
+router.post('/booking',function(req,res){
+	
+    var fullName = req.body.fullName;
+    var email = req.body.email;
+    var arrivalDate = new Date(req.body.arrivalDate).getTime() / 1000 ; //converting to unix 
+    var departureDate = new Date(req.body.departureDate).getTime() / 1000 ;
 
+    //Validate departure date & arrival date are max 3 days using unix epich time
+    if(departureDate < arrivalDate){
+    	return res.status(400).send("Depature Date cannot be before than arrival date!!");
+    }
+    console.log(Date.parse(departureDate) > Date.parse(arrivalDate))
+    if(Date.parse(departureDate) > Date.parse(arrivalDate)) {
+    	return res.status(400).send("Wrong Dates Selected !");
+    }
+
+    var reservedDates = [];
+
+    //Check if departure date & arrival date are already booked
+    User.find().then( (users) =>{
+
+	for (var i = users.length - 1; i >= 0; i--) {
+			reservedDates.push(users[i].arrivalDate);
+			reservedDates.push(users[i].departureDate);
+		}
+
+		if(reservedDates.includes(arrivalDate) && reservedDates.includes(departureDate) ){
+			return res.status(400).send("Wrong Dates Selected !");
+		} 
+	});
+
+
+    let user = new User({
+	    name: fullName, 
+	    email: email,
+	    arrivalDate: arrivalDate,
+	    departureDate: departureDate 
+	});
+
+    user.save().then((doc) =>{
+		res.send("Reservation for " + doc.name + ' done Successfully! Booking Id : ' + doc._id);
+	},(err)=>{
+		res.status(400).send(err);
+	});
+});
+
+
+router.get("/getUsers", (req, res) => {
+    User.find().then( (users) =>{
+        res.status(200)
+        // res.json( users);
+        return res.json({ success: true, users: users });
+
+	},(err) =>{
+		res.status(400).send(err);
+   });
+});
 
 
 

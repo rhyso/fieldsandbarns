@@ -1,0 +1,37 @@
+
+
+    // useEffect(()=>{
+    //     // setLoading(true)
+    //     // await axios.get("http://localhost:3001/api/getUsers")
+    //     // .then( (response) => response.data ) //needs to be data for some reason
+    //     // .then( res => { console.log(res); setUsers({ ...res.owners })})//then can be object name
+    //     // .catch(error => console.log(error));
+    //     // setLoading(false)
+
+    //         const fetchMyData = async () => {
+    //           setLoading(true);
+    //           const result = await axios(url);
+    //           setUsers(result.data);
+    //           setLoading(false);
+    //         };
+    //         fetchMyData();
+       
+    //     //fetchData()
+         
+    // },url)
+   
+    // async function fetchData() {
+    // //     const result = await axios(
+    // //     'http://localhost:3001/api/getUsers',
+    // //   );
+    // //   setUsers({...result.users});
+    // //   console.log({...result.data})
+    // //   setLoaded(true)
+
+    // const res = await fetch("http://localhost:3001/api/getUsers")
+    // res
+    //   .json()
+    //   .then(res => setUsers(res.users))
+    //   .then(setLoading(true))
+
+    // };
