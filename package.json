@@ -12,7 +12,7 @@
     "body-parser": "^1.18.3",
     "concurrently": "^4.0.1",
     "dot-object": "^2.1.2",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "firebase": "^7.3.0",
     "material-components-web": "^4.0.0",
     "mongodb": "^3.3.3",
